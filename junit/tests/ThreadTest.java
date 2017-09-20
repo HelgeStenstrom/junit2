@@ -12,9 +12,13 @@ public class ThreadTest extends TestCase {
 	public ThreadTest(String name) {
 		super(name);
 	}
+
+
 	public static Test suite() {
 		return new TestSuite(ThreadTest.class);
 	}
+
+
 	public void testRemote() {
 		
 		Thread t= new Thread() {
@@ -30,6 +34,8 @@ public class ThreadTest extends TestCase {
 			fail("interrupted test");
 		}
 	}
+
+
 	public void testRunInThread() {
 		final Thread t= new Thread() {
 			public void run() {
@@ -52,7 +58,10 @@ public class ThreadTest extends TestCase {
 		assertTrue(result.testFailures() == 1);
 		assertTrue(result.testErrors() == 0);
 	}
+
+
 	public void verifyResults() {
 		fail("verify failed");
 	}
+
 }

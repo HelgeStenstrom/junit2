@@ -14,6 +14,8 @@ public class TestTestCaseClassLoader extends TestCase {
 	public TestTestCaseClassLoader(String name) {
 		super(name);
 	}
+
+
 	public void testClassLoading() {
 		TestCaseClassLoader loader= new TestCaseClassLoader();
 		Class loadedClass= null;
@@ -57,4 +59,5 @@ public class TestTestCaseClassLoader extends TestCase {
 		}
 		assertTrue(result.booleanValue());
 	}
+
 }

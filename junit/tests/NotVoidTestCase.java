@@ -6,12 +6,18 @@ package junit.tests;
 import junit.framework.TestCase;
 
 public class NotVoidTestCase extends TestCase {
+
 	public NotVoidTestCase(String name) {
 		super(name);
 	}
+
+
 	public int testNotVoid() {
 		return 1;
 	}
+
+
 	public void testVoid() {
 	}
+
 }

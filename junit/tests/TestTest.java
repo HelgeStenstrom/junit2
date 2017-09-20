@@ -14,26 +14,37 @@ public class TestTest extends TestCase {
 		TornDown(String name) {
 			super(name);
 		}
+
 		protected void tearDown() {
 			tornDown= true;
 		}
+
 		protected void runTest() {
 			throw new Error();
 		}
 	}
+
 	public TestTest(String name) {
 		super(name);
 	}
+
+
 	public static Test suite() {
 		return new TestSuite(TestTest.class);
 	}
+
+
 	public void testAssertEquals() {
 		Object o= new Object();
 		assertEquals(o, o);
 	}
+
+
 	public void testAssertEqualsNull() {
 		assertEquals(null, null);
 	}
+
+
 	public void testAssertNullNotEqualsNull() {
 		TestCase fails= new TestCase("fails") {
 			protected void runTest() {
@@ -44,6 +55,8 @@ public class TestTest extends TestCase {
 		assertTrue(result.testFailures() == 1);
 		assertTrue(result.testErrors() == 0);
 	}
+
+
 	public void testError() {
 		TestCase error= new TestCase("error") {
 			protected void runTest() {
@@ -56,6 +69,8 @@ public class TestTest extends TestCase {
 		assertTrue(result.testErrors() == 1);
 		assertTrue(! result.wasSuccessful());
 	}
+
+
 	public void testFailAssertNotNull() {
 		TestCase fails= new TestCase("fails") {
 			protected void runTest() {
@@ -65,6 +80,8 @@ public class TestTest extends TestCase {
 		TestResult result= fails.run();
 		assertTrue(!result.wasSuccessful());
 	}
+
+
 	public void testFailure() {
 		TestCase failure= new TestCase("failure") {
 			protected void runTest() {
@@ -77,6 +94,8 @@ public class TestTest extends TestCase {
 		assertTrue(result.testErrors() == 0);
 		assertTrue(! result.wasSuccessful());
 	}
+
+
 	public void testRunAndTearDownFails() {
 		TornDown fails= new TornDown("fails") {
 			protected void tearDown() {
@@ -91,6 +110,8 @@ public class TestTest extends TestCase {
 		assertTrue(result.testErrors() == 1);
 		assertTrue(fails.tornDown);
 	}
+
+
 	public void testSetupFails() {
 		TestCase fails= new TestCase("success") {
 			protected void setUp() {
@@ -104,9 +125,13 @@ public class TestTest extends TestCase {
 		assertTrue(result.testFailures() == 0);
 		assertTrue(result.testErrors() == 1);
 	}
+
+
 	public void testSucceedAssertNotNull() {
 		assertNotNull(new Object());
 	}
+
+
 	public void testSuccess() {
 		TestCase success= new TestCase("success") {
 			protected void runTest() {
@@ -119,6 +144,8 @@ public class TestTest extends TestCase {
 		assertTrue(result.testErrors() == 0);
 		assertTrue(result.wasSuccessful());
 	}
+
+
 	public void testTearDownAfterError() {
 
 		TornDown fails= new TornDown("fails");
@@ -128,6 +155,8 @@ public class TestTest extends TestCase {
 		assertTrue(result.testErrors() == 1);
 		assertTrue(fails.tornDown);
 	}
+
+
 	public void testTearDownFails() {
 		TestCase fails= new TestCase("success") {
 			protected void tearDown() {
@@ -141,6 +170,8 @@ public class TestTest extends TestCase {
 		assertTrue(result.testFailures() == 0);
 		assertTrue(result.testErrors() == 1);
 	}
+
+
 	public void testTearDownSetupFails() {
 		TornDown fails= new TornDown("fails") {
 			protected void setUp() {
@@ -151,4 +182,5 @@ public class TestTest extends TestCase {
 		assertTrue(result.testErrors() == 1);
 		assertTrue(!fails.tornDown);
 	}
+
 }

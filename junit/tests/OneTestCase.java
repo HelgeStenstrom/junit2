@@ -6,14 +6,21 @@ package junit.tests;
 import junit.framework.TestCase;
 
 public class OneTestCase extends TestCase {
+
 	public OneTestCase(String name) {
 		super(name);
 	}
+
+
 	public void noTestCase() {
 	}
+
+
 	public void testCase() {
 		assertTrue(true);
 	}
+
+
 	public void testCase(int arg) {
 	}
 }

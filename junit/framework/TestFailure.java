@@ -9,6 +9,7 @@ public class TestFailure extends Object {
 	protected Test fFailedTest;
 	protected Throwable fThrownException;
 
+
 	/**
 	 * Constructs a TestFailure with the given test and exception.
 	 */
@@ -16,18 +17,26 @@ public class TestFailure extends Object {
 		fFailedTest= failedTest;
 		fThrownException= thrownException;
 	}
+
+
 	/**
 	 * Gets the failed test.
 	 */
 	public Test failedTest() {
+
 	    return fFailedTest;
 	}
+
+
 	/**
 	 * Gets the thrown exception.
 	 */
 	public Throwable thrownException() {
+
 	    return fThrownException;
 	}
+
+
 	/**
 	 * Returns a short description of the failure.
 	 */
@@ -36,4 +45,6 @@ public class TestFailure extends Object {
 	    buffer.append(fFailedTest+": "+fThrownException.getMessage());
 	    return buffer.toString();
 	}
+
+
 }

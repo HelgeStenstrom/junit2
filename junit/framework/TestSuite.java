@@ -34,6 +34,8 @@ public class TestSuite implements Test {
 	 */
 	public TestSuite() {
 	}
+
+
 	/**
 	 * Constructs a TestSuite from the given class. Adds all the methods
 	 * starting with "test" as test cases to the suite.
@@ -72,12 +74,17 @@ public class TestSuite implements Test {
 		if (fTests.size() == 0)
 			addTest(warning("No tests found in "+theClass.getName()));
 	}
+
+
 	/**
 	 * Adds a test to the suite.
 	 */
 	public void addTest(Test test) {
-		fTests.addElement(test);
+
+	    fTests.addElement(test);
 	}
+
+
 	/**
 	 * Counts the number of test cases that will be run by this test.
 	 */
@@ -89,6 +96,8 @@ public class TestSuite implements Test {
 		}
 		return count;
 	}
+
+
 	/**
 	 * Gets a constructor which takes a single String as
 	 * its argument.
@@ -102,6 +111,8 @@ public class TestSuite implements Test {
 		}
 		return c;
 	}
+
+
 	/**
 	 */
 	private boolean isTestMethod(Method m) {
@@ -111,6 +122,8 @@ public class TestSuite implements Test {
 		return parameters.length == 0 && name.startsWith("test") && returnType.equals(Void.TYPE) &&
 			Modifier.isPublic(m.getModifiers());
 	 }
+
+
 	/**
 	 * Runs the tests and collects their result in a TestResult.
 	 */
@@ -122,6 +135,8 @@ public class TestSuite implements Test {
 			test.run(result);
 		}
 	}
+
+
 	/**
 	 * Returns a test which will fail and log a warning message.
 	 */

@@ -32,20 +32,20 @@ public class VectorTest extends TestCase {
 		int size= fFull.size(); 
 		for (int i= 0; i < 100; i++)
 			fFull.addElement(new Integer(i));
-		assert(fFull.size() == 100+size);
+		azzert(fFull.size() == 100+size);
 	}
 	public void testClone() {
 		Vector clone= (Vector)fFull.clone(); 
-		assert(clone.size() == fFull.size());
-		assert(clone.contains(new Integer(1)));
+		azzert(clone.size() == fFull.size());
+		azzert(clone.contains(new Integer(1)));
 	}
 	public void testContains() {
-		assert(fFull.contains(new Integer(1)));  
-		assert(!fEmpty.contains(new Integer(1)));
+		azzert(fFull.contains(new Integer(1)));
+		azzert(!fEmpty.contains(new Integer(1)));
 	}
 	public void testElementAt() {
 		Integer i= (Integer)fFull.elementAt(0);
-		assert(i.intValue() == 1);
+		azzert(i.intValue() == 1);
 
 		try { 
 			Integer j= (Integer)fFull.elementAt(fFull.size());
@@ -57,11 +57,11 @@ public class VectorTest extends TestCase {
 	public void testRemoveAll() {
 		fFull.removeAllElements();
 		fEmpty.removeAllElements();
-		assert(fFull.isEmpty());
-		assert(fEmpty.isEmpty()); 
+		azzert(fFull.isEmpty());
+		azzert(fEmpty.isEmpty());
 	}
 	public void testRemoveElement() {
 		fFull.removeElement(new Integer(3));
-		assert(!fFull.contains(new Integer(3)) ); 
+		azzert(!fFull.contains(new Integer(3)) );
 	}
 }

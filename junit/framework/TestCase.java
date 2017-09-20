@@ -29,11 +29,11 @@ import java.lang.reflect.*;
  *
  * For each test implement a method which interacts
  * with the fixture. Verify the expected results with assertions specified
- * by calling <code>assert</code> with a boolean.
+ * by calling <code>azzert</code> with a boolean.
  * <pre>
  *    protected void testAdd() {
  *        double result= fValue1 + fValue2;
- *        assert(result == 5.0);
+ *        azzert(result == 5.0);
  *    }
  * </pre>
  * Once the methods are defined you can run them. The framework supports
@@ -76,31 +76,41 @@ public abstract class TestCase implements Test {
 	 * the name of the test case
 	 */
 	private final String fName;
+
+
 	/**
 	 * the currently active test result
 	 */
-	private TestResult fResult; 
+	private TestResult fResult;
+
+
 	/**
 	 * Constructs a test case with the given name.
 	 */
 	public TestCase(String name) {
 		fName= name;
 	}
+
+
 	/**
 	 * Asserts that a condition is true. If it isn't it throws
 	 * an AssertionFailedError with the given message.
 	 */
-	public void assert(String message, boolean condition) {
+	public void azzert(String message, boolean condition) {
 		if (!condition)
 			fail(message);
 	}
+
+
 	/**
 	 * Asserts that a condition is true. If it isn't it throws
 	 * an AssertionFailedError.
 	 */
-	public void assert(boolean condition) {
-		assert(null, condition);
+	public void azzert(boolean condition) {
+		azzert(null, condition);
 	}
+
+
 	/**
 	 * Asserts that two doubles are equal.
 	 * @param expected the expected value of an object
@@ -110,6 +120,8 @@ public abstract class TestCase implements Test {
 	public void assertEquals(double expected, double actual, double delta) {
 	    assertEquals(null, expected, actual, delta);
 	}
+
+
 	/**
 	 * Asserts that two longs are equal.
 	 * @param expected the expected value of an object
@@ -118,6 +130,8 @@ public abstract class TestCase implements Test {
 	public void assertEquals(long expected, long actual) {
 	    assertEquals(null, expected, actual);
 	}
+
+
 	/**
 	 * Asserts that two objects are equal. If they are not
 	 * an AssertionFailedError is thrown.
@@ -125,8 +139,11 @@ public abstract class TestCase implements Test {
 	 * @param actual the actual value of an object
 	 */
 	public void assertEquals(Object expected, Object actual) {
+
 	    assertEquals(null, expected, actual);
 	}
+
+
 	/**
 	 * Asserts that two doubles are equal.
 	 * @param message the detail message for this assertion
@@ -138,6 +155,8 @@ public abstract class TestCase implements Test {
 	    if (Math.abs(expected-actual) > delta)
 			failNotEquals(message, new Double(expected), new Double(actual));
 	}
+
+
 	/**
 	 * Asserts that two longs are equal.
 	 * @param message the detail message for this assertion
@@ -147,6 +166,8 @@ public abstract class TestCase implements Test {
 	public void assertEquals(String message, long expected, long actual) {
 	    assertEquals(message, new Long(expected), new Long(actual));
 	}
+
+
 	/**
 	 * Asserts that two objects are equal. If they are not
 	 * an AssertionFailedError is thrown.
@@ -161,58 +182,81 @@ public abstract class TestCase implements Test {
 			return;
 		failNotEquals(message, expected, actual);
 	}
+
+
 	/**
 	 * Asserts that an object isn't null.
 	 */
 	public void assertNotNull(Object object) {
-		assertNotNull(null, object);
+
+	    assertNotNull(null, object);
 	}
+
+
 	/**
 	 * Asserts that an object isn't null.
 	 */
 	public void assertNotNull(String message, Object object) {
-		assert(message, object != null); 
+		azzert(message, object != null);
 	}
+
+
 	/**
 	 * Counts the number of test cases executed by run(TestResult result).
 	 */
 	public int countTestCases() {
 		return 1;
 	}
+
+
 	/**
 	 * Creates a default TestResult object
 	 *
 	 * @see TestResult
 	 */
 	protected TestResult createResult() {
+
 	    return new TestResult();
 	}
+
+
 	/**
 	 * Fails a test with the given message. 
 	 */
 	public void fail(String message) {
-		throw new AssertionFailedError(message);
+
+	    throw new AssertionFailedError(message);
 	}
+
+
 	private void failNotEquals(String message, Object expected, Object actual) {
 		String formatted= "";
 		if (message != null)
 			formatted= message+" ";
 		fail(formatted+"expected:<"+expected+"> but was:<"+actual+">");
 	}
+
+
 	/**
 	 * Returns the currently active <code>TestResult</code> object
 	 *
 	 * @see TestResult
 	 */
 	protected TestResult getResult() {
+
 	    return fResult;
 	}
+
+
 	/**
 	 * Gets the name of the test case.
 	 */
 	public String name() {
-		return fName;
+
+	    return fName;
 	}
+
+
 	/**
 	 * Returns the message for a failed equals test
 	 * @param message the detail message for this assertion
@@ -223,6 +267,8 @@ public abstract class TestCase implements Test {
 	protected String notEqualsMessage(String message, Object expected, Object actual) {
 		return message+"expected:<"+expected+"> but was:<"+actual+">";
 	}
+
+
 	/**
 	 * A convenience method to run this test, collecting the results with a
 	 * default TestResult object.
@@ -234,6 +280,8 @@ public abstract class TestCase implements Test {
 		run(result);
 		return result;
 	}
+
+
 	/**
 	 * Runs the test case and collects the results in TestResult.
 	 * This is the template method that defines the control flow
@@ -244,6 +292,8 @@ public abstract class TestCase implements Test {
 		result.run(this);
 		fResult= null;
 	}
+
+
 	/**
 	 * Runs the bar test sequence.
 	 * @exception Throwable if any exception is thrown
@@ -257,8 +307,10 @@ public abstract class TestCase implements Test {
 			tearDown();
 		}
 	}
+
+
 	/**
-	 * Override to run the test and assert its state.
+	 * Override to run the test and azzert its state.
 	 * @exception Throwable if any exception is thrown
 	 */
 	protected void runTest() throws Throwable {
@@ -284,22 +336,30 @@ public abstract class TestCase implements Test {
 			throw e;
 		}
 	}
+
+
 	/**
 	 * Sets up the fixture, for example, open a network connection.
 	 * This method is called before a test is executed.
 	 */
 	protected void setUp() {
 	}
+
+
 	/**
 	 * Tears down the fixture, for example, close a network connection.
 	 * This method is called after a test is executed.
 	 */
 	protected void tearDown() {
 	}
+
+
 	/**
 	 * Returns a string representation of the test case
 	 */
 	public String toString() {
-	    return getClass().getName()+"."+name();
+        return getClass().getName()+"."+name();
 	}
+
+
 }

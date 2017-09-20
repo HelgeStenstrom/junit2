@@ -1,6 +1,5 @@
 package junit.tests;
 
-import java.util.Vector;
 import junit.framework.*;
 
 /**
@@ -31,37 +30,37 @@ public class SuiteTest extends TestCase {
 	public void testNoTestCaseClass() {
 		Test t= new TestSuite(NoTestCaseClass.class);
 		t.run(fResult);
-		assert(fResult.runTests() == 1);  // warning test
-		assert(! fResult.wasSuccessful());
+		azzert(fResult.runTests() == 1);  // warning test
+		azzert(! fResult.wasSuccessful());
 	}
 	public void testNoTestCases() {
 		Test t= new TestSuite(NoTestCases.class);
 		t.run(fResult);
-		assert(fResult.runTests() == 1);  // warning test
-		assert(fResult.testFailures() == 1);
-		assert(! fResult.wasSuccessful());
+		azzert(fResult.runTests() == 1);  // warning test
+		azzert(fResult.testFailures() == 1);
+		azzert(! fResult.wasSuccessful());
 	}
 	public void testNotExistingTestCase() {
 		Test t= new SuiteTest("notExistingMethod");
 		t.run(fResult);
-		assert(fResult.runTests() == 1);  
-		assert(fResult.testFailures() == 1);
-		assert(fResult.testErrors() == 0);
+		azzert(fResult.runTests() == 1);
+		azzert(fResult.testFailures() == 1);
+		azzert(fResult.testErrors() == 0);
 	}
 	public void testNotPublicTestCase() {
 		TestSuite suite= new TestSuite(NotPublicTestCase.class);
-		assert(suite.countTestCases() == 1);
+		azzert(suite.countTestCases() == 1);
 	}
 	public void testNotVoidTestCase() {
 		TestSuite suite= new TestSuite(NotVoidTestCase.class);
-		assert(suite.countTestCases() == 1);
+		azzert(suite.countTestCases() == 1);
 	}
 	public void testOneTestCase() {
 		Test t= new TestSuite(OneTestCase.class);
 		t.run(fResult);
-		assert(fResult.runTests() == 1);  
-		assert(fResult.testFailures() == 0);
-		assert(fResult.testErrors() == 0);
-		assert(fResult.wasSuccessful());
+		azzert(fResult.runTests() == 1);
+		azzert(fResult.testFailures() == 0);
+		azzert(fResult.testErrors() == 0);
+		azzert(fResult.wasSuccessful());
 	}
 }

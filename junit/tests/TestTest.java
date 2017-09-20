@@ -1,6 +1,5 @@
 package junit.tests;
 
-import java.util.Vector;
 import junit.framework.*;
 
 /**
@@ -42,8 +41,8 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		assert(result.testFailures() == 1);
-		assert(result.testErrors() == 0);
+		azzert(result.testFailures() == 1);
+		azzert(result.testErrors() == 0);
 	}
 	public void testError() {
 		TestCase error= new TestCase("error") {
@@ -52,10 +51,10 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= error.run();
-		assert(result.runTests() == 1);
-		assert(result.testFailures() == 0);
-		assert(result.testErrors() == 1);
-		assert(! result.wasSuccessful());
+		azzert(result.runTests() == 1);
+		azzert(result.testFailures() == 0);
+		azzert(result.testErrors() == 1);
+		azzert(! result.wasSuccessful());
 	}
 	public void testFailAssertNotNull() {
 		TestCase fails= new TestCase("fails") {
@@ -64,19 +63,19 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		assert(!result.wasSuccessful());
+		azzert(!result.wasSuccessful());
 	}
 	public void testFailure() {
 		TestCase failure= new TestCase("failure") {
 			protected void runTest() {
-				assert(false);
+				azzert(false);
 			}
 		};
 		TestResult result= failure.run();
-		assert(result.runTests() == 1);
-		assert(result.testFailures() == 1);
-		assert(result.testErrors() == 0);
-		assert(! result.wasSuccessful());
+		azzert(result.runTests() == 1);
+		azzert(result.testFailures() == 1);
+		azzert(result.testErrors() == 0);
+		azzert(! result.wasSuccessful());
 	}
 	public void testRunAndTearDownFails() {
 		TornDown fails= new TornDown("fails") {
@@ -89,8 +88,8 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		assert(result.testErrors() == 1);
-		assert(fails.tornDown);
+		azzert(result.testErrors() == 1);
+		azzert(fails.tornDown);
 	}
 	public void testSetupFails() {
 		TestCase fails= new TestCase("success") {
@@ -101,9 +100,9 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		assert(result.runTests() == 1);
-		assert(result.testFailures() == 0);
-		assert(result.testErrors() == 1);
+		azzert(result.runTests() == 1);
+		azzert(result.testFailures() == 0);
+		azzert(result.testErrors() == 1);
 	}
 	public void testSucceedAssertNotNull() {
 		assertNotNull(new Object());
@@ -111,23 +110,23 @@ public class TestTest extends TestCase {
 	public void testSuccess() {
 		TestCase success= new TestCase("success") {
 			protected void runTest() {
-				assert(true);
+				azzert(true);
 			}
 		};
 		TestResult result= success.run();
-		assert(result.runTests() == 1);
-		assert(result.testFailures() == 0);
-		assert(result.testErrors() == 0);
-		assert(result.wasSuccessful());
+		azzert(result.runTests() == 1);
+		azzert(result.testFailures() == 0);
+		azzert(result.testErrors() == 0);
+		azzert(result.wasSuccessful());
 	}
 	public void testTearDownAfterError() {
 
 		TornDown fails= new TornDown("fails");
 		TestResult result= fails.run();
-		assert(result.runTests() == 1);
-		assert(result.testFailures() == 0);
-		assert(result.testErrors() == 1);
-		assert(fails.tornDown);
+		azzert(result.runTests() == 1);
+		azzert(result.testFailures() == 0);
+		azzert(result.testErrors() == 1);
+		azzert(fails.tornDown);
 	}
 	public void testTearDownFails() {
 		TestCase fails= new TestCase("success") {
@@ -138,9 +137,9 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		assert(result.runTests() == 1);
-		assert(result.testFailures() == 0);
-		assert(result.testErrors() == 1);
+		azzert(result.runTests() == 1);
+		azzert(result.testFailures() == 0);
+		azzert(result.testErrors() == 1);
 	}
 	public void testTearDownSetupFails() {
 		TornDown fails= new TornDown("fails") {
@@ -149,7 +148,7 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		assert(result.testErrors() == 1);
-		assert(!fails.tornDown);
+		azzert(result.testErrors() == 1);
+		azzert(!fails.tornDown);
 	}
 }

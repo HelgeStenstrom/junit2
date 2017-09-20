@@ -41,8 +41,8 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		azzert(result.testFailures() == 1);
-		azzert(result.testErrors() == 0);
+		assertTrue(result.testFailures() == 1);
+		assertTrue(result.testErrors() == 0);
 	}
 	public void testError() {
 		TestCase error= new TestCase("error") {
@@ -51,10 +51,10 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= error.run();
-		azzert(result.runTests() == 1);
-		azzert(result.testFailures() == 0);
-		azzert(result.testErrors() == 1);
-		azzert(! result.wasSuccessful());
+		assertTrue(result.runTests() == 1);
+		assertTrue(result.testFailures() == 0);
+		assertTrue(result.testErrors() == 1);
+		assertTrue(! result.wasSuccessful());
 	}
 	public void testFailAssertNotNull() {
 		TestCase fails= new TestCase("fails") {
@@ -63,19 +63,19 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		azzert(!result.wasSuccessful());
+		assertTrue(!result.wasSuccessful());
 	}
 	public void testFailure() {
 		TestCase failure= new TestCase("failure") {
 			protected void runTest() {
-				azzert(false);
+				assertTrue(false);
 			}
 		};
 		TestResult result= failure.run();
-		azzert(result.runTests() == 1);
-		azzert(result.testFailures() == 1);
-		azzert(result.testErrors() == 0);
-		azzert(! result.wasSuccessful());
+		assertTrue(result.runTests() == 1);
+		assertTrue(result.testFailures() == 1);
+		assertTrue(result.testErrors() == 0);
+		assertTrue(! result.wasSuccessful());
 	}
 	public void testRunAndTearDownFails() {
 		TornDown fails= new TornDown("fails") {
@@ -88,8 +88,8 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		azzert(result.testErrors() == 1);
-		azzert(fails.tornDown);
+		assertTrue(result.testErrors() == 1);
+		assertTrue(fails.tornDown);
 	}
 	public void testSetupFails() {
 		TestCase fails= new TestCase("success") {
@@ -100,9 +100,9 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		azzert(result.runTests() == 1);
-		azzert(result.testFailures() == 0);
-		azzert(result.testErrors() == 1);
+		assertTrue(result.runTests() == 1);
+		assertTrue(result.testFailures() == 0);
+		assertTrue(result.testErrors() == 1);
 	}
 	public void testSucceedAssertNotNull() {
 		assertNotNull(new Object());
@@ -110,23 +110,23 @@ public class TestTest extends TestCase {
 	public void testSuccess() {
 		TestCase success= new TestCase("success") {
 			protected void runTest() {
-				azzert(true);
+				assertTrue(true);
 			}
 		};
 		TestResult result= success.run();
-		azzert(result.runTests() == 1);
-		azzert(result.testFailures() == 0);
-		azzert(result.testErrors() == 0);
-		azzert(result.wasSuccessful());
+		assertTrue(result.runTests() == 1);
+		assertTrue(result.testFailures() == 0);
+		assertTrue(result.testErrors() == 0);
+		assertTrue(result.wasSuccessful());
 	}
 	public void testTearDownAfterError() {
 
 		TornDown fails= new TornDown("fails");
 		TestResult result= fails.run();
-		azzert(result.runTests() == 1);
-		azzert(result.testFailures() == 0);
-		azzert(result.testErrors() == 1);
-		azzert(fails.tornDown);
+		assertTrue(result.runTests() == 1);
+		assertTrue(result.testFailures() == 0);
+		assertTrue(result.testErrors() == 1);
+		assertTrue(fails.tornDown);
 	}
 	public void testTearDownFails() {
 		TestCase fails= new TestCase("success") {
@@ -137,9 +137,9 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		azzert(result.runTests() == 1);
-		azzert(result.testFailures() == 0);
-		azzert(result.testErrors() == 1);
+		assertTrue(result.runTests() == 1);
+		assertTrue(result.testFailures() == 0);
+		assertTrue(result.testErrors() == 1);
 	}
 	public void testTearDownSetupFails() {
 		TornDown fails= new TornDown("fails") {
@@ -148,7 +148,7 @@ public class TestTest extends TestCase {
 			}
 		};
 		TestResult result= fails.run();
-		azzert(result.testErrors() == 1);
-		azzert(!fails.tornDown);
+		assertTrue(result.testErrors() == 1);
+		assertTrue(!fails.tornDown);
 	}
 }

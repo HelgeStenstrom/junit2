@@ -42,7 +42,7 @@ public class SimpleTest extends TestCase {
 	}
 	public void testAdd() {
 		double result= fValue1 + fValue2;
-		azzert(result == 6.0);
+		assertTrue(result == 6.0);
 	}
 	public void testDivideByZero() {
 		int zero= 0;

@@ -29,11 +29,11 @@ import java.lang.reflect.*;
  *
  * For each test implement a method which interacts
  * with the fixture. Verify the expected results with assertions specified
- * by calling <code>azzert</code> with a boolean.
+ * by calling <code>assertTrue</code> with a boolean.
  * <pre>
  *    protected void testAdd() {
  *        double result= fValue1 + fValue2;
- *        azzert(result == 5.0);
+ *        assertTrue(result == 5.0);
  *    }
  * </pre>
  * Once the methods are defined you can run them. The framework supports
@@ -96,7 +96,7 @@ public abstract class TestCase implements Test {
 	 * Asserts that a condition is true. If it isn't it throws
 	 * an AssertionFailedError with the given message.
 	 */
-	public void azzert(String message, boolean condition) {
+	public void assertTrue(String message, boolean condition) {
 		if (!condition)
 			fail(message);
 	}
@@ -106,8 +106,8 @@ public abstract class TestCase implements Test {
 	 * Asserts that a condition is true. If it isn't it throws
 	 * an AssertionFailedError.
 	 */
-	public void azzert(boolean condition) {
-		azzert(null, condition);
+	public void assertTrue(boolean condition) {
+		assertTrue(null, condition);
 	}
 
 
@@ -197,7 +197,7 @@ public abstract class TestCase implements Test {
 	 * Asserts that an object isn't null.
 	 */
 	public void assertNotNull(String message, Object object) {
-		azzert(message, object != null);
+		assertTrue(message, object != null);
 	}
 
 
@@ -310,7 +310,7 @@ public abstract class TestCase implements Test {
 
 
 	/**
-	 * Override to run the test and azzert its state.
+	 * Override to run the test and assertTrue its state.
 	 * @exception Throwable if any exception is thrown
 	 */
 	protected void runTest() throws Throwable {

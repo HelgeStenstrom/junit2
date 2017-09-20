@@ -12,7 +12,7 @@ public class OneTestCase extends TestCase {
 	public void noTestCase() {
 	}
 	public void testCase() {
-		azzert(true);
+		assertTrue(true);
 	}
 	public void testCase(int arg) {
 	}

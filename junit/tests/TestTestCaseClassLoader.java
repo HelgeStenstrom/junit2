@@ -23,7 +23,7 @@ public class TestTestCaseClassLoader extends TestCase {
 		catch (Exception e) {
 			fail("Exception during class loading");
 		}
-		azzert(loadedClass != null);
+		assertTrue(loadedClass != null);
 		Object o= null;
 		try {
 			o= loadedClass.newInstance();			
@@ -55,6 +55,6 @@ public class TestTestCaseClassLoader extends TestCase {
 		catch (IllegalAccessException e) {
 			fail("IllegalAccessException");
 		}
-		azzert(result.booleanValue());
+		assertTrue(result.booleanValue());
 	}
 }

@@ -48,9 +48,9 @@ public class ThreadTest extends TestCase {
 		catch(InterruptedException e) {
 			fail("interrupted test");
 		}
-		azzert(result.runTests() == 1);
-		azzert(result.testFailures() == 1);
-		azzert(result.testErrors() == 0);
+		assertTrue(result.runTests() == 1);
+		assertTrue(result.testFailures() == 1);
+		assertTrue(result.testErrors() == 0);
 	}
 	public void verifyResults() {
 		fail("verify failed");

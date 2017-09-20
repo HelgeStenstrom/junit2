@@ -34,7 +34,7 @@ public class MoneyTest extends TestCase {
 		Money bag[]= { new Money(24, "CHF"), new Money(14, "USD") };
 		MoneyBag expected= new MoneyBag(bag);
 		assertEquals(expected, fMB1.multiply(2)); 
-		azzert(fMB1.multiply(0).isNull());
+		assertTrue(fMB1.multiply(0).isNull());
 	}
 	public void testBagNegate() {
 		// {[12 CHF][7 USD]} negate == {[-12 CHF][-7 USD]}
@@ -61,7 +61,7 @@ public class MoneyTest extends TestCase {
 		assertEquals(expected, fMB1.add(fMB2));
 	}
 	public void testIsNull() {
-		azzert(fMB1.subtract(fMB1).isNull());
+		assertTrue(fMB1.subtract(fMB1).isNull());
 	}
 	public void testMixedSimpleAdd() {
 		// [12 CHF] + [7 USD] == {[12 CHF][7 USD]}
@@ -70,19 +70,19 @@ public class MoneyTest extends TestCase {
 		assertEquals(expected, f12CHF.add(f7USD));
 	}
 	public void testMoneyBagEquals() {
-		azzert(!fMB1.equals(null));
+		assertTrue(!fMB1.equals(null));
 
 		assertEquals(fMB1, fMB1);
-		azzert(!fMB1.equals(f12CHF));
-		azzert(!f12CHF.equals(fMB1));
-		azzert(!fMB1.equals(fMB2));
+		assertTrue(!fMB1.equals(f12CHF));
+		assertTrue(!f12CHF.equals(fMB1));
+		assertTrue(!fMB1.equals(fMB2));
 	}
 	public void testMoneyEquals() {
-		azzert(!f12CHF.equals(null));
+		assertTrue(!f12CHF.equals(null));
 
 		assertEquals(f12CHF, f12CHF);
 		assertEquals(f12CHF, new Money(12, "CHF"));
-		azzert(!f12CHF.equals(f14CHF));
+		assertTrue(!f12CHF.equals(f14CHF));
 	}
 	public void testNormalize() {
 		Money bag[]= { new Money(26, "CHF"), new Money(28, "CHF"), new Money(6, "CHF") };

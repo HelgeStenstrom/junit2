@@ -5,7 +5,7 @@ package junit.tests;
  */
 import junit.framework.*;
 
-public class ClassLoaderTestCase extends Object {
+public class ClassLoaderTestCase  {
 
 
 	public ClassLoaderTestCase() {

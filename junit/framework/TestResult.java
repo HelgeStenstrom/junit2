@@ -13,7 +13,7 @@ import java.util.Enumeration;
  *
  * @see Test
  */
-public class TestResult extends Object {
+public class TestResult {
 	protected Vector fFailures;
 	protected Vector fErrors;
 	protected int fRunTests;

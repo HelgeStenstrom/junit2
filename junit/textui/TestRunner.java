@@ -28,6 +28,7 @@ public class TestRunner {
 		return new TextTestResult();
 	}
 
+
 	protected void doRun(Test suite, boolean wait) {
 		TextTestResult result= createTestResult();
 		long startTime= System.currentTimeMillis();
@@ -49,6 +50,8 @@ public class TestRunner {
 			}
 		}
 	}
+
+
 	/**
 	 * main entry point.
 	 */
@@ -56,6 +59,8 @@ public class TestRunner {
 		TestRunner aTestRunner= new TestRunner();
 		aTestRunner.start(args);
 	}
+
+
 	/**
 	 * Runs a single test and collects its results.
 	 * This method can be used to start a test run
@@ -70,15 +75,19 @@ public class TestRunner {
 		TestRunner aTestRunner= new TestRunner();
 		aTestRunner.doRun(suite, false);
 	}
+
+
 	/**
 	 * Runs a single test and waits until the users
 	 * types RETURN.
-	 * @see run
+	 * @see #run
 	 */
 	static public void runAndWait(Test suite) {
 		TestRunner aTestRunner= new TestRunner();
 		aTestRunner.doRun(suite, true);
 	}
+
+
 	/**
 	 * Starts a test run. Analyzes the command line arguments
 	 * and runs the given test suite.
@@ -135,4 +144,5 @@ public class TestRunner {
 		}
 		System.exit(0);
 	}
+
 }

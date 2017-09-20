@@ -5,7 +5,7 @@ package junit.framework;
  * the caught exception.
  * @see TestResult
  */
-public class TestFailure extends Object {
+public class TestFailure  {
 	protected Test fFailedTest;
 	protected Throwable fThrownException;
 

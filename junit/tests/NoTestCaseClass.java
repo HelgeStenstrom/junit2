@@ -5,7 +5,7 @@ package junit.tests;
  */
 import junit.framework.TestCase;
 
-public class NoTestCaseClass extends Object {
+public class NoTestCaseClass  {
 
 	public NoTestCaseClass(String name) {
 	}

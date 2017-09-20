@@ -1,0 +1,281 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (Win95; I) [Netscape]">
+   <META NAME="Author" CONTENT="Erich Gamma">
+   <TITLE>JUnit 2</TITLE>
+</HEAD>
+<BODY>
+
+<H1>
+<B><FONT COLOR="#00CC00">J</FONT><FONT COLOR="#FF0000">U</FONT><FONT COLOR="#000000">nit</FONT></B>
+2</H1>
+01/08/98 Erich Gamma and Kent Beck
+
+<P>JUnit is a simple framework to write repeatable tests. JUnit can be
+used with JDK 1.1.* and JDK 1.2.
+<UL>
+<LI>
+<A HREF="#Summary of">Summary of Changes</A></LI>
+
+<LI>
+<A HREF="#Contents">Contents</A></LI>
+
+<LI>
+<A HREF="#Installation">Installation</A></LI>
+
+<LI>
+<A HREF="#Getting">Getting Started</A></LI>
+
+<LI>
+<A HREF="#Documentation">Documentation</A></LI>
+
+<LI>
+<A HREF="#Extending">Extending JUnit</A></LI>
+
+<LI>
+<A HREF="doc/license.htm">License</A></LI>
+</UL>
+
+<H2>
+<A NAME="Summary of"></A>Summary of Changes</H2>
+The focus of this release was to refactor parts of the framework and to
+make it more consistent. In addition, we have simplified the writing and
+running of tests.
+<H3>
+Framework</H3>
+
+<UL>
+<LI>
+We renamed the package prefix for all junit classes from "test" to "junit."</LI>
+
+<LI>
+<A NAME="Support to extract TestSuites"></A>This version extracts test
+suites automatically. TestSuite now provides a constructor <TT><A HREF="javadoc/junit.framework.TestSuite.html#TestSuite(java.lang.Class)"><B>TestSuite</B>(Class
+theClass)</A></TT>. This constructor adds all the methods from the given
+class starting with "test" as test cases to the suite. This avoids you
+having to update the suite method manually when adding a new test. For
+example, the <B>suite</B>() method of the VectorTest can now be written
+as:</LI>
+
+<UL>publ<TT>ic static Test suite() {</TT>
+<BR><TT>&nbsp; return new <B>TestSuite(VectorTest.class);</B></TT>
+<BR><TT>}</TT></UL>
+
+<LI>
+Several new assert methods were added: assertNotNull(Object object), assertNotNull(String
+message, Object object),&nbsp; fail(String message).</LI>
+
+<LI>
+Exceptions during setUp() and tearDown() are now caught and reported.</LI>
+
+<LI>
+A warning is now given when a TestCase class isn't public or has not test
+methods.</LI>
+
+<LI>
+All the assert methods are now public.</LI>
+</UL>
+
+<H3>
+TestRunner</H3>
+
+<UL>
+<LI>
+Both the batch and the interactive TestRunner no longer require that the
+Test class provides a static <B>suite()</B> method. If there is no suite
+method all the public void methods starting with "test" and no arguments
+are run (<A HREF="#Support to extract TestSuites">see above</A>).</LI>
+
+<LI>
+There is a new variation of the graphical TestRunner (junit.ui.TestRunner)
+the <B><A HREF="javadoc/junit.ui.LoadingTestRunner.html">LoadingTestRunner</A></B>.
+The LoadingTestRunner uses a <A HREF="javadoc/junit.ui.TestCaseClassLoader.html">custom
+class loader </A>to reload user classes for each test run. This avoids
+that the TestRunner tool needs to be restarted for each run. The old TestRunner
+attempted to address this by making assumptions about the garbage collection
+of classes which were not portable. In particular, the old scheme would
+not work at all with JDK1.2.</LI>
+
+<BR><B>Notice</B>, in an environment with dynamic object migration support
+or <I>hot code updating</I> like VisualAge for Java this isn't an issue.
+There, the environment takes care of updating the code and objects run
+by the TestRunner. When using JUnit with VisualAge for Java, just use the
+standard junit.ui.TestRunner.
+<LI>
+When the graphical TestRunner is run under Visual Age for Java there is
+additional <B>run</B> button to rerun a failed test. This is typically
+used to set a breakpoint in the test method and to rerun it under the debugger.</LI>
+
+<LI>
+The TestRunners support the command line option <B>-c TestClassName</B>.
+This allows you to run them&nbsp; as VisualAge for Java tools. Once you
+have JUnit installed as a VAJ tool you can select the Test class and run
+its tests from a VAJ menu (see how to run JUnit as a <A HREF="doc/vaj/vaj.htm">VisualAge
+for Java tool</A>).</LI>
+
+<LI>
+The batch TestRunner supports a runAndWait method to run a suite and wait
+until the user types RETURN.</LI>
+</UL>
+
+<H2>
+<A NAME="Contents"></A>Contents of the Release</H2>
+
+<TABLE CELLSPACING=0 CELLPADDING=0 >
+<TR>
+<TD><TT>README.html&nbsp;</TT>&nbsp;</TD>
+
+<TD>this file</TD>
+</TR>
+
+<TR>
+<TD><TT>junit.jar</TT></TD>
+
+<TD>a jar file with the JUnit framework and&nbsp; tools&nbsp;</TD>
+</TR>
+
+<TR>
+<TD><TT>junit</TT></TD>
+
+<TD>the source code of the JUnit framework, tools and samples</TD>
+</TR>
+
+<TR>
+<TD><TT>&nbsp;&nbsp;&nbsp; framework&nbsp;</TT></TD>
+
+<TD>the JUnit test framework</TD>
+</TR>
+
+<TR>
+<TD><TT>&nbsp;&nbsp;&nbsp; textui</TT></TD>
+
+<TD>a command line interface to run tests</TD>
+</TR>
+
+<TR>
+<TD><TT>&nbsp;&nbsp;&nbsp; ui</TT></TD>
+
+<TD>a graphical user interface to run tests</TD>
+</TR>
+
+<TR>
+<TD><TT>&nbsp;&nbsp;&nbsp; samples</TT></TD>
+
+<TD>sample test cases</TD>
+</TR>
+
+<TR>
+<TD><TT>&nbsp;&nbsp;&nbsp; tests</TT></TD>
+
+<TD>test cases for JUnit itself</TD>
+</TR>
+
+<TR>
+<TD><TT>javadoc</TT></TD>
+
+<TD>javadoc generated documentation</TD>
+</TR>
+
+<TR>
+<TD><TT>doc</TT></TD>
+
+<TD>documentation and articles</TD>
+</TR>
+
+<TR>
+<TD>vaj</TD>
+
+<TD>Files for using JUnit with VisualAge for Java</TD>
+</TR>
+</TABLE>
+
+<H2>
+<A NAME="Installation"></A>Installation</H2>
+Below are the installation steps for installing JUnit:
+<OL>
+<LI>
+unzip the junit2.zip file</LI>
+
+<LI>
+add<I> </I><B>junit.jar</B> to the CLASSPATH. For example: <TT>set classpath=%classpath%;INSTALL_DIR\junit2\junit.jar</TT></LI>
+
+<LI>
+test the installation by using either the batch or the graphical TestRunner
+tool to run the tests that come with this release. All the tests should
+pass OK.</LI>
+
+<UL>
+<LI>
+for the batch TestRunner type: <TT>java junit.textui.TestRunner junit.samples.AllTests</TT></LI>
+
+<LI>
+for the graphical TestRunner type: <TT>java junit.ui.TestRunner junit.samples.AllTests</TT></LI>
+</UL>
+</OL>
+
+<H2>
+<A NAME="Getting"></A>Getting Started</H2>
+To get started with unit testing and JUnit read the Java Report article:
+<A HREF="doc/testinfected/testing.htm">Test Infected - Programmers Love
+Writing Tests</A>.
+<BR>This article demonstrates the development process with JUnit in the
+context of multiple currency arithmetic. The corresponding source code
+is in test\samples\money.
+
+<P>You find additional samples in test.samples package:
+<UL>
+<LI>
+SimpleTest.java - some simple test cases</LI>
+
+<LI>
+VectorTest.java - test cases for java.util.Vector</LI>
+</UL>
+
+<H2>
+<A NAME="Documentation"></A>Documentation</H2>
+
+<BLOCKQUOTE><A HREF="doc/cookbook/cookbook.htm">JUnit Cookbook</A>
+<BR>&nbsp;&nbsp;&nbsp; A cookbook for implementing tests with JUnit.
+<BR><A HREF="doc/testinfected/testing.htm">Test Infected - Programmers
+Love Writing Tests</A>
+<BR>&nbsp;&nbsp;&nbsp; An article demonstrating the development process
+with JUnit.
+<BR><A HREF="javadoc/packages.html">Javadoc</A>
+<BR>&nbsp;&nbsp;&nbsp; API documentation generated with javadoc.
+<BR><A HREF="doc/vaj/vaj.htm">Using JUnit with VisualAge for Java</A>
+<BR>&nbsp;&nbsp;&nbsp; Hints about how to use JUnit in the VisualAge for
+Java environment.
+<BR><A HREF="doc/faq/faq.htm">Frequently asked questions</A>
+<BR>&nbsp;&nbsp;&nbsp; Some frequently asked questions about using JUnit.</BLOCKQUOTE>
+
+<H2>
+<A NAME="Extending"></A>Extending JUnit</H2>
+Examples of possible JUnit extensions can be found in the <TT>test.extensions</TT>
+package:
+<UL>
+<LI>
+<A HREF="javadoc/junit.extensions.TestDecorator.html">TestDecorator</A>
+- A Decorator for Test. You can use it as the base class for implementing
+decorators to extend test cases.</LI>
+
+<LI>
+<A HREF="javadoc/junit.extensions.ActiveTest.html">ActiveTest</A> - A Decorator
+which runs each test in a separate thread.</LI>
+
+<LI>
+<A HREF="javadoc/junit.extensions.TestSetup.html">TestSetup</A> - A Decorator
+to set up and tear down additional fixture state. Subclass TestSetup and
+insert it into your tests when you want to set up additional state once
+before the tests are run.</LI>
+</UL>
+
+<H2>
+Acknowledgements</H2>
+Many people gave us feedback on JUnit 1. Here is a likely incomplete list:
+Martin Fowler, Marnix Klustner, Marcio Marchini, Nick Edgar, Michael C.
+Feathers.
+<BR>Andr&eacute; Weinand rewrote the graphical TestRunner and Carolyn MacLeod
+showed us how to do the VisualAge for Java tool integration.
+</BODY>
+</HTML>

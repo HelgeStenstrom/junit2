@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (Win95; I) [Netscape]">
+   <META NAME="Author" CONTENT="Erich Gamma">
+   <TITLE>JUnit Cookbook</TITLE>
+</HEAD>
+<BODY>
+
+<H1>
+<FONT COLOR="#000000">Using </FONT><FONT COLOR="#33FF33">J</FONT><FONT COLOR="#CC0000">U</FONT>nit
+under VisualAge for Java 2.0</H1>
+This page describes how to use JUnit with VisualAge for Java:
+<UL>
+<LI>
+<A HREF="#Installing JUnit in VisualAge for">Installing JUnit</A></LI>
+
+<LI>
+<A HREF="#Using">Using JUnit</A></LI>
+
+<LI>
+<A HREF="#Installing JUnit as a VisualAge for Java 2.0">Installing JUnit
+as a VisualAge for Java Tool</A></LI>
+</UL>
+
+<H2>
+<A NAME="Installing JUnit in VisualAge for"></A>Installing JUnit in VisualAge
+for Java</H2>
+These are the steps for installing JUnit in VisualAge for Java:
+<OL>
+<LI>
+import the vaj\junit.dat file into your repository.</LI>
+
+<LI>
+add the JUnit project to your workspace.</LI>
+
+<BR>copy vaj\project_resources\JUnit into your project_resources directory.</OL>
+
+<H2>
+<A NAME="Using"></A>Using JUnit</H2>
+Here are some hints for how to use JUnit under VisualAge for Java.
+<UL>
+<LI>
+When using the graphical TestRunner use the test.ui.TestRunner. Don't use
+test.ui.LoadingTestRunner since VAJ takes care of updating the TestRunner
+so that you always run the latest version of your code.</LI>
+
+<LI>
+Add the project including the test cases to be run to the TestRunner's
+project path:</LI>
+
+<UL>
+<LI>
+select the TestRunner</LI>
+
+<LI>
+Selected->Properties</LI>
+
+<LI>
+go to the Class Path Page</LI>
+
+<LI>
+add the project to the project path</LI>
+</UL>
+</UL>
+
+<H2>
+<A NAME="Installing JUnit as a VisualAge for Java 2.0"></A>Installing JUnit
+as a VisualAge for Java 2.0 tool</H2>
+VisualAge for Java provides an <I>open tools API </I>to add custom tools
+to the development environment. Here are the steps for how to install JUnit
+as a Visual Age for Java Tool:
+<OL>
+<LI>
+copy the directory vaj\tools\test-ui into the <B>VAJ_INSTALLDIR\tools</B>
+directory</LI>
+
+<LI>
+add JUnit to your workspace class path</LI>
+
+<UL>
+<LI>
+open the options window: Window->Options...</LI>
+
+<LI>
+select the <B>Resources</B> section and edit the workspace class path</LI>
+
+<LI>
+click Edit... and enter JUnit</LI>
+</UL>
+
+<LI>
+restart VisualAge for Java</LI>
+</OL>
+Once JUnit is installed as a tool you can select a class and run its tests
+with the Selected->Tools->JUnit or from the Quick Start menu item.
+
+<P><B>Notice</B>: the projects of the test cases have to be on the workspace
+class path to run them. Otherwise JUnit will not find the classes. To add
+the projects to the workspace class path follow the steps above.
+</BODY>
+</HTML>
